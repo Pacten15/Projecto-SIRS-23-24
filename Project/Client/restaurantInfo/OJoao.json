@@ -1,0 +1,29 @@
+{
+    "owner": "João Pereira",
+    "restaurant": "O João",
+    "address": "Rua Principal, 123, Porto",
+    "genre": ["Portuguesa", "Tradicional"],
+    "menu": [
+      {
+        "itemName": "Bife da Casa",
+        "category": "Carne",
+        "description": "Um suculento bife de lombo grelhado.",
+        "price": 14.99,
+        "currency": "EUR"
+      },
+      {
+        "itemName": "Bacalhau à Brás",
+        "category": "Peixe",
+        "description": "Um clássico português, bacalhau desfiado com batata palha e ovos.",
+        "price": 12.99,
+        "currency": "EUR"
+      },
+      {
+        "itemName": "Risotto de Legumes",
+        "category": "Vegetariano",
+        "description": "Arroz Arborio cremoso cozido com legumes variados e queijo Parmesão.",
+        "price": 10.99,
+        "currency": "EUR"
+      }
+    ]
+}

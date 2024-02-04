@@ -1,0 +1,23 @@
+openssl req -x509 -newkey rsa:4096 -nodes -out cert.pem -keyout key.pem -days 365
+flask run --cert cert.pem --key key.pem 
+
+
+Create a RSA key pair for server  by:
+
+    Create a private key:
+        openssl genpkey -algorithm RSA -out private_server_key.pem
+
+    Extract the public key from the private key:
+
+        openssl rsa -pubout -in private_server_key.pem -out public_server_key.key
+
+    Generate a Self-Signed Certificate
+
+        openssl req -new -key private_server_key.pem -out csr.pem
+
+        openssl x509 -req -days 365 -in csr.pem -signkey private_server_key.pem -out certificate_server.pem
+
+
+create key and certificate thats is going to be used by all users
+
+openssl req -x509 -newkey rsa:4096 -nodes -out cert.pem -keyout key.pem -days 365

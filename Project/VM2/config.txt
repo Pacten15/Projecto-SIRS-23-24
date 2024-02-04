@@ -1,0 +1,48 @@
+Install python libraries using our requirements.txt:
+
+    Flask==3.0.0
+    psycopg2_binary==2.9.9
+    pycryptodome==3.19.0
+    Requests==2.31.0
+    sshtunnel==0.4.0
+
+pip install -r ../requirements.txt
+
+Change interfaces by changing file in path /etc/network/interfaces:
+
+    # This file describes the network interfaces available on your system
+    # and how to activate them. For more information, see interfaces(5).
+
+    source /etc/network/interfaces.d/*
+
+    # The loopback network interface, sw-1 interface and sw-2 interface
+    auto lo eth0 eth1             
+    iface lo inet loopback
+
+
+    # sw-2 interface
+    iface eth0 inet static          
+            address 192.168.1.254
+            netmask 255.255.255.0
+    	gateway 192.168.1.1	
+
+    iface eth1 inet dhcp
+    	address 10.0.4.2
+    	netmask 255.255.255.0
+    	gateway 8.8.8.8
+
+Configure firewall for VM1 using ufw:
+
+sudo apt install ufw
+
+sudo ufw enable
+
+sudo ufw default deny incoming
+
+sudo ufw allow from any to 192.168.1.254 port 443
+
+After executing the script turn off the VM and configure the network in the virtual box software and run the VM again so the configuration of the Interfaces is applied.
+
+
+
+

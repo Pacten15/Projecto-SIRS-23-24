@@ -1,0 +1,29 @@
+{
+    "owner": "Maria Silva",
+    "restaurant": "Dona Maria",
+    "address": "Rua da Glória, 22, Lisboa",
+    "genre": ["Portuguese", "Traditional"],
+    "menu": [
+      {
+        "itemName": "House Steak",
+        "category": "Meat",
+        "description": "A succulent sirloin grilled steak.",
+        "price": 24.99,
+        "currency": "EUR"
+      },
+      {
+        "itemName": "Sardines",
+        "category": "Fish",
+        "description": "A Portuguese staple, accompanied by potatoes and salad.",
+        "price": 21.99,
+        "currency": "EUR"
+      },
+      {
+        "itemName": "Mushroom Risotto",
+        "category": "Vegetarian",
+        "description": "Creamy Arborio rice cooked with assorted mushrooms and Parmesan cheese.",
+        "price": 16.99,
+        "currency": "EUR"
+      }
+    ]
+}

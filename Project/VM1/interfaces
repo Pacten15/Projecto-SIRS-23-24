@@ -1,0 +1,18 @@
+# This file describes the network interfaces available on your system
+# and how to activate them. For more information, see interfaces(5).
+
+source /etc/network/interfaces.d/*
+
+# The loopback network interface and sw-1 interface
+auto lo eth0 eth1                    
+iface lo inet loopback
+
+# sw-1 interface
+iface eth0 inet static          
+        address 192.168.0.100
+        netmask 255.255.255.0
+	gateway 192.168.0.10
+
+iface eth1 inet dhcp
+        address 10.0.3.2
+        gateway 8.8.8.8

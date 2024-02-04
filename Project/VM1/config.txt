@@ -1,0 +1,93 @@
+Interface de rede da máquina VM1
+
+# This file describes the network interfaces available on your system
+# and how to activate them. For more information, see interfaces(5).
+
+source /etc/network/interfaces.d/*
+
+# The loopback network interface and sw-1 interface
+auto lo eth0 eth1
+iface lo inet loopback
+
+# sw-1 interface
+iface eth0 inet static
+        address 192.168.0.100
+        netmask 255.255.255.0
+        gateway 192.168.0.10
+
+iface eth1 inet dhcp
+        address 10.0.3.2
+        gateway 8.8.8.8
+
+Move this file to the this path /etc/network/interfaces:
+
+
+
+sudo cp interfaces /etc/network/interfaces
+
+
+
+Afterwards initizialize super user and go to the directory where postgres is installed:
+
+Configure Connection between the VM's for VM2 to connect to the DB in VM1
+
+For that we need to config this configuration on the VM1:
+
+    Change file /etc/postgresql/16/main/postgresql.conf so we define the ip address listing for request for the 
+                                                        database being in this case on of the ip belonging to the VM1 and that is
+                                                         also recognized by the VM1 explained in the Infrastructure (to be done) 
+
+    sudo nano /etc/postgresql/16/main/postgresql.conf
+
+    where is 
+
+    #listen_addresses = 'localhost'     # what IP address(es) to listen on;
+
+    to
+
+    listen_addresses = '192.168.0.100'  # what IP address(es) to listen on;
+
+Change this file by moving it to this path /etc/postgresql/16/main/postgresql.conf:
+
+cd VM1
+
+sudo cp postgresql.conf /etc/postgresql/16/main/postgresql.conf
+
+Afterwards add ip to the file in path /etc/postgresql/16/main/pg_hba.conf
+
+echo "host    all             all             192.168.0.10/24         scram-sha-256" | sudo tee -a /etc/postgresql/16/main/pg_hba.conf
+
+Como criar uma base de dados:
+
+	initizializar o postgres:
+
+	sudo su postgres
+
+	psql
+	
+	CREATE USER sirs_dbadmin WITH PASSWORD 'sirs_dbpassword';
+
+    CREATE DATABASE sirs_bombappetit WITH OWNER sirs_dbadmin ENCODING='UTF8' TEMPLATE=template0;
+
+
+Para aceder à base de dados:
+
+    sudo su postgres
+
+    psql -U sirs_dbadmin -d sirs_bombappetit -h 192.168.0.100  -p 5432 -W
+
+
+Configure firewall for VM1 using ufw:
+
+sudo apt install ufw
+
+sudo ufw enable
+
+sudo ufw default deny forward
+
+sudo ufw allow from any to 192.168.0.100 port 22
+
+After executing the script turn off the VM and configure the network in the virtual box software and run the VM again so the configuration of the Interfaces is applied.
+
+
+

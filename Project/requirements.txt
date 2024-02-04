@@ -1,0 +1,5 @@
+Flask==3.0.0
+psycopg2_binary==2.9.9
+pycryptodome==3.19.0
+Requests==2.31.0
+sshtunnel==0.4.0

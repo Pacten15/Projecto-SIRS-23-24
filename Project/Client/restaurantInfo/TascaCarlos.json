@@ -1,0 +1,30 @@
+{
+    "owner": "Carlos Santos",
+    "restaurant": "Tasca do Carlos",
+    "address": "Rua do Almada, 45, Porto",
+    "genre": ["Portuguesa", "Tradicional"],
+    "menu": [
+      {
+        "itemName": "Posta Mirandesa",
+        "category": "Carne",
+        "description": "Um generoso naco de carne de vitela, típico da região de Miranda do Douro.",
+        "price": 15.99,
+        "currency": "EUR"
+      },
+      {
+        "itemName": "Caldeirada de Peixe",
+        "category": "Peixe",
+        "description": "Uma mistura de peixes cozidos com batatas, pimentos e tomate.",
+        "price": 13.99,
+        "currency": "EUR"
+      },
+      {
+        "itemName": "Feijoada Vegetariana",
+        "category": "Vegetariano",
+        "description": "Uma versão vegetariana da clássica feijoada, com legumes variados e feijão preto.",
+        "price": 11.99,
+        "currency": "EUR"
+      }
+    ]
+}
+    
