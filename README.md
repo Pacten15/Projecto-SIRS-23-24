@@ -24,6 +24,8 @@ It offers insights into the rationale behind these choices, the project's archit
 
 This document presents installation and demonstration instructions.
 
+Project Grade: 19
+
 
 
 ## Installation
