@@ -97,11 +97,16 @@ New profiles: skip
 
 To                         Action      From
 --                         ------      ----
-192.168.0.100 22           ALLOW IN    ANY
+192.168.0.100 22           ALLOW IN    192.168.1.254             
+Anywhere on lo             ALLOW IN    Anywhere                  
+192.168.0.100 5432/tcp     ALLOW IN    192.168.0.100             
+Anywhere (v6) on lo        ALLOW IN    Anywhere (v6)   
 ```
 
 To verify if the rules were currectly defined and if ufw is operating
 To see if that is the fact it should appear that the virtual machine denies incoming, and disables the route that will deny forwarding and allows outgoing requests 
+
+NOTE: This ufw config does not work at all just forget about ufw
 
 ```sh
 $ sudo systemctl status ssh
@@ -169,16 +174,17 @@ This machine runs the main firewall and is the point of connection to all of the
 $ sudo ufw status verbose
 Status: active
 Logging: on (low)
-Default: deny (incoming), allow (outgoing), deny (routed)
+Default: deny (incoming), allow (outgoing), allow (routed)
 New profiles: skip
 
 To                         Action      From
 --                         ------      ----
-192.168.0.100 22           ALLOW IN    192.168.1.254                        
 192.168.1.254 443          ALLOW IN    Anywhere                  
+192.168.0.100 22           ALLOW IN    192.168.1.254             
+192.168.2.0 443            ALLOW IN    Anywhere                  
 
-192.168.0.100              ALLOW FWD   192.168.1.254             
-192.168.1.254 443          ALLOW FWD   Anywhere
+192.168.1.254 443          ALLOW FWD   Anywhere                  
+192.168.0.100 22           ALLOW FWD   192.168.1.254    
 ```
 
 To verify if the rules were currectly defined and if ufw is operating
@@ -214,9 +220,6 @@ $ ip a
        valid_lft forever preferred_lft forever
 (... omitted ...)
 
-$ ping 192.168.2.0
-PING 192.168.2.0 (192.168.2.0) 56(84) bytes of data.
-64 bytes from 192.168.2.0: icmp_seq=1 ttl=63 time=1.82 ms
 
 $ ping 192.168.1.254
 PING 192.168.1.254 (192.168.1.254) 56(84) bytes of data.

@@ -4,9 +4,9 @@ import json
 import requests
 from datetime import datetime
 
-import warnings
-from urllib3.exceptions import SubjectAltNameWarning
-warnings.filterwarnings('ignore', category=SubjectAltNameWarning)
+#import warnings
+#from urllib3.exceptions import SubjectAltNameWarning
+#warnings.filterwarnings('ignore', category=SubjectAltNameWarning)
 
 sys.path.append("..")
 try:
@@ -53,7 +53,8 @@ def read_json_file(file_path):
 
 def https_post_requests(url, data, certificate_client_path, key_path, certificate_server_path):
         try:
-            response = requests.post(url, json=data, cert=(certificate_client_path, key_path), verify=certificate_server_path)
+            # It is not mutual TLS, so we don't need to provide the client certificate and key.
+            response = requests.post(url, json=data, verify=certificate_server_path)
             data = response.json()
             status_code = response.status_code
             return [data, status_code]

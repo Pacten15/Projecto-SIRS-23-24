@@ -6,9 +6,9 @@ sudo systemctl enable postgresql
 
 sudo systemctl start postgresql
 
-sudo cp postgresql.conf /etc/postgresql/16/main/postgresql.conf
+sudo cp postgresql.conf /etc/postgresql/18/main/postgresql.conf
 
-echo "host    all             all             192.168.0.10/24         scram-sha-256" | sudo tee -a /etc/postgresql/16/main/pg_hba.conf
+echo "host    all             all             192.168.0.10/24         scram-sha-256" | sudo tee -a /etc/postgresql/18/main/pg_hba.conf
 
 sudo -u postgres psql -c "CREATE USER sirs_dbadmin WITH PASSWORD 'sirs_dbpassword';"
 
@@ -17,4 +17,14 @@ sudo -u postgres psql -c "CREATE DATABASE sirs_bombappetit WITH OWNER sirs_dbadm
 sudo systemctl enable ssh
 
 sudo apt update
+
+sudo ufw enable
+
+sudo ufw default deny forward
+
+sudo ufw allow from 192.168.1.254 to 192.168.0.100 port 22
+
+sudo ufw allow in on lo
+
+sudo ufw allow from 192.168.0.100 to 192.168.0.100 port 5432 proto tcp
 
